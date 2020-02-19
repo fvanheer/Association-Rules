@@ -1,5 +1,4 @@
 #import packages
-
 import pandas as pd
 import numpy as np
 from itertools import combinations, groupby
@@ -8,8 +7,6 @@ from collections import Counter
 #import data
 data_import = pd.read_csv('data.csv', encoding='ISO-8859-1')
 select = data_import[['InvoiceNo','StockCode']]
-
-select.values
 
 #all possible pairs
 
@@ -153,5 +150,17 @@ def ProdRel(x):
         return "Positive Relationship"
 
 rules['Product_Relationship'] = rules.apply(lambda x: ProdRel(x), axis=1)
+final_rules = rules[rules['Product_Relationship']=='Positive Relationship']
+join = data_import[['StockCode','Description']]
+join = join.drop_duplicates()
+final_rules = pd.merge(final_rules, join, how='left', left_on='item_A', right_on='StockCode')
+final_rules = final_rules.rename(columns={'Description':'DescriptionA'})
+final_rules = final_rules.drop_duplicates()
+final_rules = pd.merge(final_rules, join, how='left', left_on='item_B', right_on='StockCode')
+final_rules = final_rules.rename(columns={'Description':'DescriptionB'})
+final_rules = final_rules.drop_duplicates()
+final_rules['flag'] = np.where(final_rules['DescriptionA']==final_rules['DescriptionB'], 1, 0)
+final_rules = final_rules[final_rules['flag']==0]
+final_rules = final_rules[['DescriptionA', 'DescriptionB', 'freqAB', 'freqAB', 'confidenceAtoB', 'confidenceBtoA', 'lift', 'Product_Relationship']]
 
-rules.to_csv('relationship.csv')
+final_rules.to_csv('relationship.csv')
