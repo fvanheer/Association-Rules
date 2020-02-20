@@ -22,7 +22,18 @@ pydec
 
 ### Data
 
-* [Find the Data here]() - Download the publik dataset from here
+* [Find the Data here]() - Download the public dataset from here
+
+## The App
+This is a very basic app aimed at simplifying the management of running computations for a semi custom dataset. The point was to enable an analyst/ Data Scientist to simply upload the dataset and have the computations run automatically. Then Save the the outputs in csv format. The task can also be completed by a merchandising team. 
+
+The concept can be taken further by have a DB connecter in the app with some customer parameters that can be passed through by the app. Such as dates between or product category etc. Then also potentially a action button like "Run Model" to start the computations. 
+
+For now you can clone or download the reposit and simply run the streamlit app. I have also included an example dataset for importing. Have fun. 
+
+```
+streamlit run app.py
+```
 
 ## The Model
 

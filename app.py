@@ -6,8 +6,8 @@ import pydeck as pdk
 import base64
 
 st.title("Product Relationship Algorithm")
-st.markdown("Import a csv file in the correct format and it will generate an output of products with positive relationships. The results can then be used to build bundles upsell opportunities. Also, the results can be used for basic recommendations - if you buy a specific item you are likely to be interested in an item with a positive relationship.")
-st.markdown("The headings for importing to the model: __InvoiceNo__ for order; __StockCode__ for product ID/sku; __Description__ as the product name or description.")
+st.markdown("Import a csv file in the correct format and it will generate an output of products with positive relationships. The results can then be used to build bundles for upsell opportunities. Also, the results can be used for basic recommendations - if you buy a specific item you are likely to be interested in an item with a positive relationship.")
+st.markdown("The headings for importing to the model: __InvoiceNo__ for order id; __StockCode__ for product id/sku; __Description__ as the product name or description.")
 
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 if uploaded_file is not None:
@@ -22,16 +22,21 @@ if uploaded_file is not None:
 ### THE MODEL STARTS HERE ###
 ###########################################################################
 try:
+    #import data
+    data_import = pd.read_csv('data/upload.csv')
+    select = data_import[['InvoiceNo','StockCode']]
+
+    import time
+    'Starting a long computation...'
+    # Add a placeholder
+    latest_iteration = st.empty()
+    bar = st.progress(0)
+
     #import packages
     import pandas as pd
     import numpy as np
     from itertools import combinations, groupby
     from collections import Counter
-
-    #import data
-    data_import = pd.read_csv('data/upload.csv')
-    select = data_import[['InvoiceNo','StockCode']]
-
     #all possible pairs
 
     orders = select.values
@@ -187,7 +192,15 @@ try:
     final_rules = final_rules[final_rules['flag']==0]
     final_rules = final_rules[['DescriptionA', 'DescriptionB', 'freqAB', 'freqAB', 'confidenceAtoB', 'confidenceBtoA', 'lift', 'Product_Relationship']]
 
-    final_rules.to_csv('relationship.csv')
+    #final_rules.to_csv('relationship.csv')
+
+    for i in range(100):
+    # Update the progress bar with each iteration.
+        latest_iteration.text(f'Iteration {i+1}')
+        bar.progress(i + 1)
+        time.sleep(0.1)
+
+    '...and now we\'re done!'
 ############################################################################
 ### THE MODEL ENDS HERE ###
 ###########################################################################
@@ -216,7 +229,8 @@ try:
         data = data
     else:
         data = data[data['DescriptionA'].isin(products)]
-    data
+    data.head()
+
     count = data['DescriptionA'].nunique()
     freq_Ave = data['freqAB'].mean()
     st.write('Number of Products with Positive Relationships __%i__' % count)
@@ -236,4 +250,4 @@ try:
         ''    
 
 except:
-    st.write('NO DATA PLEASE UPLOAD TO START RUN THE APRIORI ALGO. Make sure that the data is in the above mentions format.')
+    st.write('__NO DATA PLEASE UPLOAD TO RUN THE APRIORI ALGO__. Make sure that the data is in the above mentioned format.')
