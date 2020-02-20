@@ -15,6 +15,9 @@ or pip install
 ```
 pandas
 numpy
+streamlit
+altair
+pydec
 ```
 
 ### Data
@@ -27,6 +30,7 @@ You can find the code in the model model.py file
 
 ### Deployment options
 
+* Docker Setup. 
 * Include the computations as a part of your ETL process (I use [KNIME](https://www.knime.com/)) - Include it as a step before writing the final customer lifetime table to your Data Warehouse.
 
 ## Author

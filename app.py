@@ -3,11 +3,11 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import pydeck as pdk
-import plotly as py
+import base64
 
-st.title("Product Relationships Algorithm")
-st.markdown("Import a csv file in the correct format and it will generate an output of products with positive relationships.")
-st.markdown("The headings for importing to the model: InvoiceNo for order; StockCode for product ID/sku; Description as the product name of description.")
+st.title("Product Relationship Algorithm")
+st.markdown("Import a csv file in the correct format and it will generate an output of products with positive relationships. The results can then be used to build bundles upsell opportunities. Also, the results can be used for basic recommendations - if you buy a specific item you are likely to be interested in an item with a positive relationship.")
+st.markdown("The headings for importing to the model: __InvoiceNo__ for order; __StockCode__ for product ID/sku; __Description__ as the product name or description.")
 
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 if uploaded_file is not None:
@@ -194,7 +194,7 @@ try:
 except:
     ''
 
-@st.cache
+@st.cache(persist=True)
 def load_data():
     data = pd.read_csv('relationship.csv')
     return data
@@ -219,8 +219,13 @@ try:
     data
     count = data['DescriptionA'].nunique()
     freq_Ave = data['freqAB'].mean()
-    st.write('Count Products %i' % count)
-    st.write('Average times in basket together %i' % freq_Ave)
+    st.write('Number of Products with Positive Relationships __%i__' % count)
+    st.write('Average times in basket together __%i__' % freq_Ave)
+
+    csv = data.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+    href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (click and save as &lt;some_name&gt;.csv)'
+    st.markdown(href, unsafe_allow_html=True)
 
     import os
     #delete files button
@@ -231,4 +236,4 @@ try:
         ''    
 
 except:
-    st.write('NO DATA PLEASE UPLOAD TO START RUN THE APRIORI ALGO. Male sure that the data is in the above mentions format.')
+    st.write('NO DATA PLEASE UPLOAD TO START RUN THE APRIORI ALGO. Make sure that the data is in the above mentions format.')
