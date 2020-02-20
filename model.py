@@ -5,7 +5,7 @@ from itertools import combinations, groupby
 from collections import Counter
 
 #import data
-data_import = pd.read_csv('data.csv', encoding='ISO-8859-1')
+data_import = pd.read_csv('data/data.csv', encoding='ISO-8859-1')
 select = data_import[['InvoiceNo','StockCode']]
 
 #all possible pairs
