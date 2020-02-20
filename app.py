@@ -27,7 +27,7 @@ try:
     select = data_import[['InvoiceNo','StockCode']]
 
     import time
-    'Starting a long computation...'
+    '__Starting a long computation...__'
     # Add a placeholder
     latest_iteration = st.empty()
     bar = st.progress(0)
@@ -192,7 +192,7 @@ try:
     final_rules = final_rules[final_rules['flag']==0]
     final_rules = final_rules[['DescriptionA', 'DescriptionB', 'freqAB', 'freqAB', 'confidenceAtoB', 'confidenceBtoA', 'lift', 'Product_Relationship']]
 
-    #final_rules.to_csv('relationship.csv')
+    final_rules.to_csv('relationship.csv')
 
     for i in range(100):
     # Update the progress bar with each iteration.
@@ -200,7 +200,7 @@ try:
         bar.progress(i + 1)
         time.sleep(0.1)
 
-    '...and now we\'re done!'
+    '__...and now we\'re done!__'
 ############################################################################
 ### THE MODEL ENDS HERE ###
 ###########################################################################
@@ -229,7 +229,7 @@ try:
         data = data
     else:
         data = data[data['DescriptionA'].isin(products)]
-    data.head()
+    st.dataframe(data.head())
 
     count = data['DescriptionA'].nunique()
     freq_Ave = data['freqAB'].mean()
