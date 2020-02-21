@@ -30,6 +30,7 @@ For now you can clone or download the reposit and simply run the streamlit app. 
 ```
 streamlit run app.py
 ```
+## App Preview
 ![App Preview](images/app.png)
 ## The Model
 
