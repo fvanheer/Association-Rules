@@ -20,24 +20,24 @@ altair
 pydec
 ```
 
-### Data
-
-* [Find the Data here]() - Download the public dataset from here
-
 ## The App
-This is a very basic app aimed at simplifying the management of running computations for a semi custom dataset. The point was to enable an analyst/ Data Scientist to simply upload the dataset and have the computations run automatically. Then Save the the outputs in csv format. The task can also be completed by a merchandising team. 
+This is a very basic app aimed at simplifying the management of running computations for a semi custom dataset (you can manage date parameters as well as product category and then make sure that the column names match the specifications). The point was to enable an analyst/ Data Scientist to simply upload the dataset and have the computations run automatically. Then Save the outputs in csv format. The task can also be completed by the merchandising team.
 
-The concept can be taken further by have a DB connecter in the app with some customer parameters that can be passed through by the app. Such as dates between or product category etc. Then also potentially a action button like "Run Model" to start the computations. 
+The concept can be taken further by including a DB connecter in the app with some custom parameters that can be passed through by the app. Such as dates between or product category etc. Then also potentially a action button like "Run Model" to start the computations. 
 
-For now you can clone or download the reposit and simply run the streamlit app. I have also included an example dataset for importing. Have fun. 
+For now you can clone or download the reposit and simply run the streamlit app. I have also included an example dataset for importing. Have fun!!!
 
 ```
 streamlit run app.py
 ```
-
+![App Preview](images/app.png)
 ## The Model
 
 The code for the mode is in the **model.py** file. There you can adapt the output of the model and just copy into the app.py file. Or you could also adapt the code to replace the model in the app.py file with one simple function for pre-processing and then computation. 
+
+## Data
+
+* [Find some Data here](https://www.kaggle.com/) - Download the public dataset from here
 
 ### Deployment options
 
