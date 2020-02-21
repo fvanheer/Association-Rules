@@ -19,7 +19,6 @@ streamlit
 altair
 pydec
 ```
-
 ## The App
 This is a very basic app aimed at simplifying the management of running computations for a semi custom dataset (you can manage date parameters as well as product category and then make sure that the column names match the specifications). The point was to enable an analyst/ Data Scientist to simply upload the dataset and have the computations run automatically. Then Save the outputs in csv format. The task can also be completed by the merchandising team.
 
