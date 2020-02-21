@@ -37,7 +37,7 @@ streamlit run app.py
 
 ## The Model
 
-You can find the code in the model model.py file 
+The code for the mode is in the **model.py** file. There you can adapt the output of the model and just copy into the app.py file. Or you could also adapt the code to replace the model in the app.py file with one simple function for pre-processing and then computation. 
 
 ### Deployment options
 
