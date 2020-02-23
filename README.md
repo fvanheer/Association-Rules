@@ -41,7 +41,7 @@ The code for the mode is in the **model.py** file. There you can adapt the outpu
 
 ### Deployment options
 
-* Docker Setup. 
+* Launch the app with docker and host for internal users. 
 * Include the computations as a part of your ETL process (I use [KNIME](https://www.knime.com/)) - Include it as a step before writing the final customer lifetime table to your Data Warehouse.
 
 ## Author
