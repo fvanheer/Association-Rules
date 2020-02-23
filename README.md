@@ -51,4 +51,4 @@ The code for the mode is in the **model.py** file. There you can adapt the outpu
 ## Acknowledgments
 
 * Found inspiration from multiple fellow Data Scientists in the open source community
-* But I would like to specifically highlight this post [Association Rule Mining via Apriori Algorithm in Python](https://stackabuse.com/association-rule-mining-via-apriori-algorithm-in-python/) 
+* But I would like to specifically highlight this post [Association Rule Mining via Apriori Algorithm in Python](https://www.kaggle.com/datatheque/association-rules-mining-market-basket-analysis) 
